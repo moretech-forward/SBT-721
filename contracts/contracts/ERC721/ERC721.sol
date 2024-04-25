@@ -128,6 +128,24 @@ abstract contract ERC721 {
         emit Transfer(address(0), to, id);
     }
 
+    /// @notice Burns a token to a specified id.
+    /// @param id The token ID to burn.
+    function _burn(uint256 id) internal virtual {
+        address owner = _ownerOf[id];
+
+        require(owner != address(0), "NOT_MINTED");
+
+        // Ownership check above ensures no underflow.
+        unchecked {
+            _balanceOf[owner]--;
+        }
+
+        delete _ownerOf[id];
+        delete _tokenURIs[id];
+
+        emit Transfer(owner, address(0), id);
+    }
+
     /*//////////////////////////////////////////////////////////////
                         INTERNAL SAFE MINT LOGIC
     //////////////////////////////////////////////////////////////*/

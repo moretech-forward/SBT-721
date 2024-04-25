@@ -45,4 +45,11 @@ contract Soulbound is ERC721, Owned {
             _setTokenURI(tokenId, uris[i]);
         }
     }
+
+    /// @notice Burns a token to a specified id.
+    /// @dev Only callable by the owner.
+    /// @param id The token ID to burn.
+    function burn(uint256 id) external onlyOwner {
+        _burn(id);
+    }
 }
