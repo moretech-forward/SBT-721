@@ -19,10 +19,13 @@ abstract contract ERC721 {
                          METADATA STORAGE/LOGIC
     //////////////////////////////////////////////////////////////*/
 
+    /// @notice Name of the token collection.
     string public name;
 
+    /// @notice Symbol of the token collection.
     string public symbol;
 
+    /// @notice A private mapping of token IDs to their corresponding URIs.
     mapping(uint256 tokenId => string) private _tokenURIs;
 
     /// @notice Returns the URI for a given token.
@@ -58,8 +61,10 @@ abstract contract ERC721 {
                       ERC721 BALANCE/OWNER STORAGE
     //////////////////////////////////////////////////////////////*/
 
+    /// @notice Mapping to track the owner of each token ID.
     mapping(uint256 => address) internal _ownerOf;
 
+    /// @notice Mapping to track the balance of tokens owned by each address.
     mapping(address => uint256) internal _balanceOf;
 
     /// @notice Returns the owner of a specific token ID.
