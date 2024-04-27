@@ -2,14 +2,12 @@ import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
 import hre from "hardhat";
 
-describe("SBT Solmate", function () {
+describe("SBT-721", function () {
   async function deployFixture() {
     const [owner, otherAccount, otherAccount2] = await hre.ethers.getSigners();
 
     const SBT = await hre.ethers.getContractFactory("Soulbound");
     const sbt = await SBT.deploy("Soulbound Token", "SBT");
-    const receipt = await sbt.deploymentTransaction()?.wait();
-    console.log("Gas used for deploy", receipt?.gasUsed);
 
     return { sbt, owner, otherAccount, otherAccount2 };
   }

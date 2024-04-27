@@ -17,13 +17,16 @@ contract Soulbound is ERC721, Owned {
     constructor(
         string memory _name,
         string memory _symbol
-    ) ERC721(_name, _symbol) Owned(msg.sender) {}
+    ) payable ERC721(_name, _symbol) Owned(msg.sender) {}
 
     /// @notice Mints a new token to a specified address with a provided URI.
     /// @dev Only callable by the owner.
     /// @param to The address to receive the minted token.
     /// @param uri The metadata URI to associate with the minted token.
-    function safeMint(address to, string memory uri) external onlyOwner {
+    function safeMint(
+        address to,
+        string memory uri
+    ) external payable onlyOwner {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
@@ -36,10 +39,11 @@ contract Soulbound is ERC721, Owned {
     function safeBatchMint(
         address[] memory to,
         string[] memory uris
-    ) external onlyOwner {
-        require(to.length == uris.length, "length mismatch");
+    ) external payable onlyOwner {
+        uint256 len = to.length;
+        require(len == uris.length, "length mismatch");
 
-        for (uint i = 0; i < to.length; i++) {
+        for (uint i = 0; i < len; ++i) {
             uint256 tokenId = _nextTokenId++;
             _safeMint(to[i], tokenId);
             _setTokenURI(tokenId, uris[i]);
@@ -49,7 +53,7 @@ contract Soulbound is ERC721, Owned {
     /// @notice Burns a token to a specified id.
     /// @dev Only callable by the owner.
     /// @param id The token ID to burn.
-    function burn(uint256 id) external onlyOwner {
+    function burn(uint256 id) external payable onlyOwner {
         _burn(id);
     }
 }
