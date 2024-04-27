@@ -6,6 +6,9 @@
 
 ### Analysis
 
+![alt text](image.png)
+![alt text](image-1.png)
+
 #### CRIT
 
 ##### ERC721 SAFEMINT REENTRANCY
@@ -28,6 +31,8 @@ There will be a warning about it at the front
 You can ignore it, since all errors are compiler version related, and the internal functions are taken from the tested OpenZeppelin library
 
 #### GAS
+
+Vulnerabilities were tested and accepted as false positives
 
 ### Slither
 
