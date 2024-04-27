@@ -34,14 +34,8 @@ abstract contract ERC721 {
     function tokenURI(
         uint256 tokenId
     ) public view virtual returns (string memory) {
-        string memory baseURI = _baseURI();
         string memory _tokenURI = _tokenURIs[tokenId];
-
-        if (bytes(baseURI).length == 0) {
-            return _tokenURI;
-        }
-
-        return string.concat(baseURI, _tokenURI);
+        return _tokenURI;
     }
 
     /// @notice Internally sets the URI for a given token.
@@ -49,12 +43,6 @@ abstract contract ERC721 {
     /// @param _tokenURI The URI string to set as the token's metadata link.
     function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal {
         _tokenURIs[tokenId] = _tokenURI;
-    }
-
-    /// @notice Returns the base URI used to construct tokenURIs for all tokens.
-    /// @return The base URI string.
-    function _baseURI() internal pure virtual returns (string memory) {
-        return "";
     }
 
     /*//////////////////////////////////////////////////////////////

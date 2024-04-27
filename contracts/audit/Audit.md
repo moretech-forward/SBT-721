@@ -4,9 +4,6 @@
 
 ### [solidityscan.com](solidityscan.com)
 
-![alt text](image.png)
-![alt text](image-1.png)
-
 ### Analysis
 
 #### CRIT
@@ -22,7 +19,15 @@ Attack example
 
 #### MEDIUM
 
+The array is checked for equality of lengths, and it is assumed that a person will not contribute too many addresses per race for mint tokens
+
+There will be a warning about it at the front
+
 #### LOW
+
+You can ignore it, since all errors are compiler version related, and the internal functions are taken from the tested OpenZeppelin library
+
+#### GAS
 
 ### Slither
 
