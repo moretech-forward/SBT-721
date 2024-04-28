@@ -23,10 +23,7 @@ contract Soulbound is ERC721, Owned {
     /// @dev Only callable by the owner.
     /// @param to The address to receive the minted token.
     /// @param uri The metadata URI to associate with the minted token.
-    function safeMint(
-        address to,
-        string memory uri
-    ) external payable onlyOwner {
+    function safeMint(address to, string memory uri) external onlyOwner {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
@@ -39,7 +36,7 @@ contract Soulbound is ERC721, Owned {
     function safeBatchMint(
         address[] memory to,
         string[] memory uris
-    ) external payable onlyOwner {
+    ) external onlyOwner {
         uint256 len = to.length;
         require(len == uris.length, "length mismatch");
 
@@ -53,7 +50,7 @@ contract Soulbound is ERC721, Owned {
     /// @notice Burns a token to a specified id.
     /// @dev Only callable by the owner.
     /// @param id The token ID to burn.
-    function burn(uint256 id) external payable onlyOwner {
+    function burn(uint256 id) external onlyOwner {
         _burn(id);
     }
 }
