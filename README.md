@@ -1,7 +1,7 @@
 # SBT-721
 
 - [SBT-721/1155 - MoreTech](https://docs.google.com/document/d/1FPTiTTb970ODTL0-vlGv-fciU8qfFNAQoEqqIGf7BJw/edit#heading=h.6a48bav376lt)
-- [contract_review_SBT-721/1155_MoreTech](https://docs.google.com/document/d/1DRR1SXpwc6SkerLK1nf6yogMX41ZiaJCP-GioCwgtBw/edit)
+- [contract_review_SBT-721_MoreTech](https://docs.google.com/document/d/1DRR1SXpwc6SkerLK1nf6yogMX41ZiaJCP-GioCwgtBw/edit)
 
 ## Docs
 
