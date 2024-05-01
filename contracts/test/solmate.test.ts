@@ -100,5 +100,11 @@ describe("SBT-721", function () {
         "UNAUTHORIZED"
       );
     });
+
+    it("owner's burning the non-existent NFT.", async function () {
+      const { sbt } = await loadFixture(deployFixture);
+
+      await expect(sbt.burn(0)).to.be.revertedWith("NOT_MINTED");
+    });
   });
 });
