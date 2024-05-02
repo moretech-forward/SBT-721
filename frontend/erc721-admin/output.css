@@ -8590,28 +8590,16 @@ html:has(.drawer-open.drawer-open) {
   display: none;
 }
 
-.max-h-36 {
-  max-height: 9rem;
-}
-
-.max-h-64 {
-  max-height: 16rem;
-}
-
 .max-h-96 {
   max-height: 24rem;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
-.min-h-12 {
-  min-height: 3rem;
-}
-
 .min-h-36 {
   min-height: 9rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-96 {
