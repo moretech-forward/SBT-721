@@ -344,17 +344,32 @@
       },
     ];
 
+    const provider = new ethers.providers.Web3Provider(this.parent.ethereum);
+    let signer = provider.getSigner();
+    const connectContract = new ethers.Contract(coinAddress, abi, signer);
     // tests chain
-    const privateKey =
-      "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
-    const provider = ethers.getDefaultProvider("http://localhost:8545/");
+    // const privateKey =
+    //("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80");
+    // const provider = ethers.getDefaultProvider("http://localhost:8545/");
 
-    const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
-    const walletWithProvider = new ethers.Wallet(privateKey, provider);
+    // const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+    // const walletWithProvider = new ethers.Wallet(privateKey, provider);
 
-    const contract = new ethers.Contract(contractAddress, abi, provider);
-    const connectContract = contract.connect(walletWithProvider);
+    //const contract = new ethers.Contract(contractAddress, abi, provider);
+    // const connectContract = contract.connect(walletWithProvider);
     // tests chain
+
+    const getContractEvents = async () => {
+      const filter = await connectContract.queryFilter("Transfer");
+
+      filter.forEach(async (event) => {
+        const topics = event.topics;
+        const topicToWallet = topics[2].slice(-40);
+        // topicToWallet === walletWithProvider.address.slice(-40).toLowerCase()
+        console.log(await connectContract.tokenURI(topics[3]));
+      });
+    };
+    // getContractEvents();
   </script>
   <script
     type="text/javascript"
@@ -449,15 +464,12 @@
         }
       });
 
-      // const uniqueWalletsArray = Array.from(new Set(walletsArray)); // без дубликатов массив
+      const uniqueWalletsArray = Array.from(new Set(walletsArray)); // без дубликатов массив
 
       const metadata_links = formData.get("metadata_uri");
-      const urisArray = metadata_links
-        .split("\n")
-        .map((uri) => uri.trim())
-        .filter((uri) => uri.trim() !== "");
+      const urisArray = metadata_links.split("\n");
 
-      if (walletsArray.length != urisArray.length) {
+      if (uniqueWalletsArray.length != urisArray.length) {
         Toastify({
           text: `The number of addresses and links did not match! Check again, there may be duplicates!`,
           className: "error",
@@ -468,19 +480,7 @@
       }
 
       if (!error) {
-        await connectContract.safeBatchMint(walletsArray, urisArray);
-
-        // собираем все события контракта и там можно пройтись по массиву
-        // и вывести owner (topics[2]), id (topics[3]), uri tokenURI(topics[3])
-        // обратиться к uri и збрать json выводя name, description, image
-        const filter = await connectContract.queryFilter("Transfer");
-
-        filter.forEach(async (event) => {
-          const topics = event.topics;
-          const topicToWallet = topics[2].slice(-40);
-          // topicToWallet === walletWithProvider.address.slice(-40).toLowerCase()
-          console.log(await connectContract.tokenURI(topics[3]));
-        });
+        await connectContract.safeBatchMint(uniqueWalletsArray, urisArray);
       }
     });
   </script>
