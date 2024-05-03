@@ -1,6 +1,4 @@
-
 // File: contracts/ERC721/Owned.sol
-
 
 pragma solidity >=0.8.0;
 
@@ -38,7 +36,6 @@ abstract contract Owned {
 }
 
 // File: contracts/ERC721/ERC721/ERC721.sol
-
 
 pragma solidity >=0.8.0;
 
@@ -221,10 +218,7 @@ abstract contract ERC721TokenReceiver {
 
 // File: contracts/ERC721/SBT.sol
 
-
 pragma solidity ^0.8.23;
-
-
 
 /// @title Soulbound ERC721 Token
 /// @notice Implements non-transferable ERC721 tokens managed by an owner.
@@ -233,13 +227,17 @@ contract Soulbound is ERC721, Owned {
     /// @dev Stores the next token ID to be minted.
     uint256 private _nextTokenId;
 
+    address public immutable myAddr;
+
     /// @dev Initializes the ERC721 token with a name and symbol, and sets the contract deployer as the owner.
     /// @param _name Name of the ERC721 token.
     /// @param _symbol Symbol of the ERC721 token.
     constructor(
         string memory _name,
         string memory _symbol
-    ) payable ERC721(_name, _symbol) Owned(msg.sender) {}
+    ) payable ERC721(_name, _symbol) Owned(msg.sender) {
+        myAddr = address(this);
+    }
 
     /// @notice Mints a new token to a specified address with a provided URI.
     /// @dev Only callable by the owner.
