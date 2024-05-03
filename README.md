@@ -5,14 +5,14 @@
 
 ## Docs
 
-- [Docs](https://github.com/moretech-forward/SBT-721/blob/main/contracts/Docs.md)
-- [Audit](https://github.com/moretech-forward/SBT-721/blob/main/contracts/audit/Audit.md)
+- [Docs](https://github.com/moretech-forward/SBT-721/blob/main/Docs.md)
+- [Audit](https://github.com/moretech-forward/SBT-721/blob/main/audit/Audit.md)
 
 ## Usage
 
 ```sh
 git clone git@github.com:moretech-forward/SBT-721-contracts.git
-cd SBT-721
+cd SBT-721-contracts
 npm install
 npx hardhat compile
 npx hardhat test

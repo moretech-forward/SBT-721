@@ -8,6 +8,9 @@ import {Owned} from "./Owned.sol";
 /// @notice Implements non-transferable ERC721 tokens managed by an owner.
 /// @dev Extends ERC721 for token functionality and Owned for ownership management.
 contract Soulbound is ERC721, Owned {
+    /// @notice Auxiliary variable for frontend
+    address public immutable myAddr;
+
     /// @dev Stores the next token ID to be minted.
     uint256 private _nextTokenId;
 
@@ -17,7 +20,9 @@ contract Soulbound is ERC721, Owned {
     constructor(
         string memory _name,
         string memory _symbol
-    ) payable ERC721(_name, _symbol) Owned(msg.sender) {}
+    ) payable ERC721(_name, _symbol) Owned(msg.sender) {
+        myAddr = address(this);
+    }
 
     /// @notice Mints a new token to a specified address with a provided URI.
     /// @dev Only callable by the owner.
