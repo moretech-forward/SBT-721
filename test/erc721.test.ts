@@ -40,15 +40,15 @@ describe("SBT-721", function () {
       expect(await sbt.ownerOf(0)).to.equal(owner);
     });
 
-    it("Batch mint", async function () {
-      const { sbt, owner } = await loadFixture(deployFixture);
-      await sbt
-        .connect(owner)
-        .safeBatchMint(
-          [owner, owner, owner, owner],
-          ["123", "132", "123", "qwe"]
-        );
-    });
+    // it("Batch mint", async function () {
+    //   const { sbt, owner } = await loadFixture(deployFixture);
+    //   await sbt
+    //     .connect(owner)
+    //     .safeBatchMint(
+    //       [owner, owner, owner, owner],
+    //       ["123", "132", "123", "qwe"]
+    //     );
+    // });
 
     it("Mint zero address", async function () {
       const { sbt, owner } = await loadFixture(deployFixture);

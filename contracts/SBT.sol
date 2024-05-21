@@ -34,28 +34,29 @@ contract Soulbound is ERC721, Owned {
         _setTokenURI(tokenId, uri);
     }
 
-    /// @notice Mints multiple tokens to the specified addresses with corresponding URIs in a single transaction.
-    /// @dev The lengths of the `to` and `uris` arrays must match; only callable by the owner.
-    /// @param to An array of addresses that will each receive a minted token.
-    /// @param uris An array of metadata URIs corresponding to each token to be minted.
-    function safeBatchMint(
-        address[] memory to,
-        string[] memory uris
-    ) external onlyOwner {
-        uint256 len = to.length;
-        require(len == uris.length, "length mismatch");
-
-        for (uint i = 0; i < len; ++i) {
-            uint256 tokenId = _nextTokenId++;
-            _safeMint(to[i], tokenId);
-            _setTokenURI(tokenId, uris[i]);
-        }
-    }
-
     /// @notice Burns a token to a specified id.
     /// @dev Only callable by the owner.
     /// @param id The token ID to burn.
     function burn(uint256 id) external onlyOwner {
         _burn(id);
     }
+
+    /// @notice Mints multiple tokens to the specified addresses with corresponding URIs in a single transaction.
+    /// @dev The lengths of the `to` and `uris` arrays must match; only callable by the owner.
+    /// @dev Removed at the suggestion of the Forward Protocol team
+    /// @param to An array of addresses that will each receive a minted token.
+    /// @param uris An array of metadata URIs corresponding to each token to be minted.
+    // function safeBatchMint(
+    //     address[] memory to,
+    //     string[] memory uris
+    // ) external onlyOwner {
+    //     uint256 len = to.length;
+    //     require(len == uris.length, "length mismatch");
+
+    //     for (uint i = 0; i < len; ++i) {
+    //         uint256 tokenId = _nextTokenId++;
+    //         _safeMint(to[i], tokenId);
+    //         _setTokenURI(tokenId, uris[i]);
+    //     }
+    // }
 }
