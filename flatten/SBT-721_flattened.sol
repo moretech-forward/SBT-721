@@ -223,7 +223,7 @@ pragma solidity ^0.8.23;
 /// @title Soulbound ERC721 Token
 /// @notice Implements non-transferable ERC721 tokens managed by an owner.
 /// @dev Extends ERC721 for token functionality and Owned for ownership management.
-contract Soulbound is ERC721, Owned {
+contract SoulboundERC721 is ERC721, Owned {
     /// @notice Auxiliary variable for frontend
     address public immutable myAddr;
 

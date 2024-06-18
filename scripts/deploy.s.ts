@@ -11,14 +11,11 @@ async function main() {
     "https://ipfs.io/ipfs/QmaNMk641puZy1uth85UCM4MZiXB9qUyuverkBo5bPu35n"
   );
 
-  await sbt.safeMint(
-    "0x4eb6EBcfA62792A01E5005c453F39D63493a79B8",
-    "https://ipfs.io/ipfs/QmaNMk641puZy1uth85UCM4MZiXB9qUyuverkBo5bPu35n"
-  );
+  await sbt.safeMint("0x4eb6EBcfA62792A01E5005c453F39D63493a79B8", "");
 
   await sbt.safeMint(
     "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
-    "https://ipfs.io/ipfs/QmaNMk641puZy1uth85UCM4MZiXB9qUyuverkBo5bPu35n"
+    "https://ipfs.io/ipfs/"
   );
 
   console.log(`Soulbound deployed to ${await sbt.getAddress()}`);
